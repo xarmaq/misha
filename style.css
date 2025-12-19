@@ -1,0 +1,508 @@
+:root {
+    --neon-green: #1DB954;
+    --black: #232323;
+    --off-white: #EFF0EB;
+    --purple: #6836F9;
+    --red: #E91E63;
+    /* Placeholder for accent */
+    --font-main: 'Benzin-Bold', sans-serif;
+}
+
+@font-face {
+    font-family: 'Benzin-Bold';
+    src: url('assets/fonts/Benzin-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--black);
+    color: var(--off-white);
+    font-family: var(--font-main);
+    overflow: hidden;
+    /* Prevent default scroll, handle in main */
+}
+
+main {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    /* Hide scrollbar for cleaner look */
+    scrollbar-width: none;
+}
+
+main::-webkit-scrollbar {
+    display: none;
+}
+
+.story-card {
+    height: 100vh;
+    width: 100%;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 2rem;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Typography */
+h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 0.9;
+    text-transform: uppercase;
+    color: var(--neon-green);
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Buttons */
+.wrapped-btn {
+    background-color: var(--off-white);
+    color: var(--black);
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.wrapped-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Sections Specifics */
+#intro {
+    background-color: var(--black);
+}
+
+#age {
+    background-color: var(--off-white);
+    color: var(--black);
+}
+
+.big-number {
+    font-size: 15rem;
+    font-weight: 900;
+    color: var(--purple);
+    line-height: 1;
+}
+
+.legendary {
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#moments {
+    background-color: var(--purple);
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.photo-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 3px solid var(--black);
+    transform: rotate(var(--rotation, 0deg));
+}
+
+#videos {
+    background-color: var(--black);
+}
+
+.video-placeholder {
+    width: 100%;
+    height: 400px;
+    /* Placeholder height */
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+}
+
+#stats {
+    background-color: var(--neon-green);
+    color: var(--black);
+}
+
+/* Stats Cards - Tilt Effect */
+.stats-container {
+    perspective: 1000px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.stat-card {
+    background: var(--off-white);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 10px 10px 0px var(--black);
+    transition: transform 0.1s;
+    /* Fast transition for mouse movement */
+    transform-style: preserve-3d;
+    min-width: 250px;
+    cursor: pointer;
+}
+
+.stat-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    transform: translateZ(20px);
+}
+
+.stat-card p {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--neon-green);
+    -webkit-text-stroke: 1px var(--black);
+    /* Outline for legibility */
+    transform: translateZ(30px);
+}
+
+/* Outro Button */
+.final-msg {
+    color: var(--neon-green);
+    margin-bottom: 3rem;
+}
+
+/* Optical Backgrounds */
+.optical-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: repeating-radial-gradient(circle at 50% 50%,
+            var(--black),
+            var(--black) 10px,
+            var(--neon-green) 10px,
+            var(--neon-green) 20px);
+    opacity: 0.2;
+    animation: pulse-zoom 10s infinite alternate;
+}
+
+@keyframes pulse-zoom {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+/* Kinetic Typography */
+.kinetic-text {
+    font-size: 15vw;
+    /* Massive responsive font */
+    line-height: 0.8;
+    color: var(--neon-green);
+    text-transform: uppercase;
+    font-weight: 900;
+    position: relative;
+    z-index: 2;
+    animation: drift 3s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+    0% {
+        transform: skewX(0deg) translateX(0);
+    }
+
+    100% {
+        transform: skewX(-5deg) translateX(10px);
+    }
+}
+
+/* Animations */
+.in-view .kinetic-text {
+    animation: drift 3s ease-in-out infinite alternate, text-reveal 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes text-reveal {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Moment Photo Styles */
+.photo-grid-scroll {
+    max-height: 60vh;
+    overflow-y: auto;
+    width: 100%;
+    padding-right: 10px;
+    /* Space for scrollbar */
+    /* Custom Scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--neon-green) var(--black);
+}
+
+.photo-grid-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.photo-grid-scroll::-webkit-scrollbar-track {
+    background: var(--black);
+}
+
+.photo-grid-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--neon-green);
+    border-radius: 20px;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.photo-item {
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid var(--black);
+    display: block;
+}
+
+.photo-item:hover {
+    z-index: 10;
+    transform: scale(1.1) rotate(0deg) !important;
+}
+
+/* Video Styles */
+.video-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    width: 100vw;
+    max-width: 100%;
+    gap: 20px;
+    padding: 20px 5%;
+    /* Padding side to see next slide */
+    scrollbar-width: none;
+    /* Hide scrollbar */
+}
+
+.video-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.video-item {
+    flex: 0 0 80%;
+    /* Show 80% of width to hint at more */
+    max-width: 400px;
+    scroll-snap-align: center;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid var(--off-white);
+    background: #000;
+    aspect-ratio: 9/16;
+    /* Portrait video ratio */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.video-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Scribbles */
+.scribble {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.scribble path,
+.scribble circle {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-scribble 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes draw-scribble {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.scribble-intro {
+    width: 200px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    opacity: 0.6;
+}
+
+.big-number-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Fade In Utility */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fade-in-up 1s ease-out forwards;
+}
+
+@keyframes fade-in-up {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Polish */
+@media (max-width: 768px) {
+    h1 {
+        font-size: clamp(3rem, 15vw, 6rem);
+    }
+
+    .big-number {
+        font-size: clamp(8rem, 30vw, 15rem);
+    }
+
+    .story-card {
+        padding: 1rem;
+    }
+
+    .photo-grid {
+        gap: 0.5rem;
+    }
+
+    .kinetic-text {
+        font-size: 12vw;
+        /* Larger on mobile for impact */
+        transform: none;
+        /* No perspective on mobile for readability */
+    }
+
+    .stat-card {
+        min-width: 150px;
+        /* Smaller cards for mobile */
+        padding: 1.5rem;
+        box-shadow: 8px 8px 0px var(--neon-green);
+    }
+
+    .stat-card p {
+        font-size: 2rem;
+    }
+}
+
+/* Optimization Hook */
+.kinetic-text,
+.photo-item,
+.video-item,
+.stat-card {
+    will-change: transform, opacity;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    position: absolute;
+    top: 10px;
+    left: 0;
+    z-index: 5;
+    padding: 0 10px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--off-white);
+    width: 0%;
+    animation: progress-fill 5s linear infinite;
+}
+
+@keyframes progress-fill {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* Confetti */
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Mobile Tweaks */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    .big-number {
+        font-size: 10rem;
+    }
+}
