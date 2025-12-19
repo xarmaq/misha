@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: 'Benzin-Bold';
-    src: url('assets/fonts/Benzin-Bold.ttf') format('truetype');
+    src: url('Benzin-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
